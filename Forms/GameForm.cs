@@ -733,13 +733,11 @@ namespace Project3.Forms
 
                     if (shouldStart)
                     {
-                        // Запускаем игру
                         StartGame();
 
-                        // Показываем уведомление в отдельной задаче
                         Task.Run(() =>
                         {
-                            Thread.Sleep(100); // Короткая задержка
+                            Thread.Sleep(100); 
 
                             if (this.IsHandleCreated && !this.IsDisposed)
                             {
@@ -854,7 +852,6 @@ namespace Project3.Forms
                 {
                     _logger.LogInfo($"Game ended. Winner: {_gameService.Winner}");
 
-                    // Отправляем результат игры противнику
                     if (_gameService.Winner.HasValue)
                     {
                         _networkService.SendGameEnd(_gameService.Winner.Value);
