@@ -52,7 +52,6 @@ namespace Project3.Forms
             base.OnLoad(e);
             _logger.LogInfo("GameForm loaded, starting network connection");
 
-            // Сбрасываем игру при загрузке формы
             _gameService.ResetGame();
             ClearGameBoard();
 
@@ -69,7 +68,7 @@ namespace Project3.Forms
                 _networkService.MoveReceived += OnMoveReceived;
                 _networkService.PlayerConnected += OnPlayerConnected;
                 _networkService.PlayerDisconnected += OnPlayerDisconnected;
-                _networkService.GameEnded += OnGameEnded; // Новый обработчик
+                _networkService.GameEnded += OnGameEnded; 
 
                 _logger.LogInfo("Event handlers set up successfully");
             }
@@ -196,7 +195,6 @@ namespace Project3.Forms
 
                 _logger.LogInfo($"Updating turn label. IsMyTurn: {_isMyTurn}, MyPlayerNumber: {_myPlayerNumber}, CurrentPlayer: {_gameService.CurrentPlayer}");
 
-                // Проверяем, наш ли сейчас ход
                 bool isMyTurnNow = (_gameService.CurrentPlayer == _myPlayerNumber);
 
                 if (isMyTurnNow)
@@ -325,30 +323,24 @@ namespace Project3.Forms
                 _myPlayerNumber = _networkService.IsServer ? 1 : 2;
                 _logger.LogInfo($"My player number: {_myPlayerNumber}");
 
-                // Сбрасываем игру и очищаем поле
                 _gameService.ResetGame();
                 ClearGameBoard();
 
-                // Скрываем waitingLabel
                 if (waitingLabel != null)
                 {
                     waitingLabel.Visible = false;
                     _logger.LogInfo("WaitingLabel hidden");
                 }
 
-                // Включаем кнопки игры
                 EnableGameButtonsInternal(true);
 
-                // Определяем, кто ходит первым (всегда игрок 1 - сервер)
                 _isMyTurn = (_myPlayerNumber == 1);
 
                 _logger.LogInfo($"Game started. IsServer: {_networkService.IsServer}, MyPlayerNumber: {_myPlayerNumber}, IsMyTurn: {_isMyTurn}, _gameStarted: {_gameStarted}");
 
-                // Обновляем UI
                 UpdateTurnLabelInternal();
                 UpdatePlayerLabelsInternal();
 
-                // Принудительно обновляем форму
                 this.Refresh();
 
                 _logger.LogInfo("Network game started - both players connected");
@@ -428,7 +420,6 @@ namespace Project3.Forms
 
                 await Task.Delay(1000);
 
-                // Показываем диалог в основном потоке
                 DialogResult result = DialogResult.Cancel;
                 if (this.IsHandleCreated && !this.IsDisposed)
                 {
@@ -607,7 +598,6 @@ namespace Project3.Forms
             {
                 _logger.LogInfo($"Game button clicked. GameOver: {_gameService.IsGameOver}, GameStarted: {_gameStarted}, IsConnected: {_networkService.IsConnected}, IsMyTurn: {_isMyTurn}, CurrentPlayer: {_gameService.CurrentPlayer}, MyPlayerNumber: {_myPlayerNumber}");
 
-                // Используем lock для проверки состояния
                 bool gameReady;
                 lock (_lockObject)
                 {
@@ -628,7 +618,6 @@ namespace Project3.Forms
                     return;
                 }
 
-                // Проверяем, наш ли ход по номеру игрока
                 if (_gameService.CurrentPlayer != _myPlayerNumber)
                 {
                     _logger.LogInfo($"Game button clicked but not player's turn. CurrentPlayer: {_gameService.CurrentPlayer}, MyPlayerNumber: {_myPlayerNumber}");
@@ -725,7 +714,6 @@ namespace Project3.Forms
 
             try
             {
-                // Используем Invoke для выполнения в UI потоке
                 this.Invoke(new Action(() =>
                 {
                     bool shouldStart;
