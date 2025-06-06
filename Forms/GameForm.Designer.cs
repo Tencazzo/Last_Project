@@ -28,131 +28,114 @@ namespace Project3.Forms
 
         private void InitializeComponent()
         {
-            gamePanel = new Panel();
-            completeButton = new Button();
-            player1Label = new Label();
-            player2Label = new Label();
-            player1ColorPanel = new Panel();
-            player2ColorPanel = new Panel();
-            turnLabel = new Label();
-            waitingLabel = new Label();
-            SuspendLayout();
-            // 
-            // gamePanel
-            // 
-            gamePanel.BackColor = Color.FromArgb(0, 0, 139);
-            gamePanel.BorderStyle = BorderStyle.Fixed3D;
-            gamePanel.Location = new Point(125, 156);
-            gamePanel.Margin = new Padding(4, 5, 4, 5);
-            gamePanel.Name = "gamePanel";
-            gamePanel.Size = new Size(1124, 1013);
-            gamePanel.TabIndex = 0;
-            // 
-            // completeButton
-            // 
-            completeButton.BackColor = Color.White;
-            completeButton.Font = new Font("Microsoft Sans Serif", 14F);
-            completeButton.Location = new Point(1438, 1172);
-            completeButton.Margin = new Padding(4, 5, 4, 5);
-            completeButton.Name = "completeButton";
-            completeButton.Size = new Size(225, 78);
-            completeButton.TabIndex = 1;
-            completeButton.Text = "Завершить";
-            completeButton.UseVisualStyleBackColor = false;
-            // 
-            // player1Label
-            // 
-            player1Label.AutoSize = true;
-            player1Label.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            player1Label.ForeColor = Color.White;
-            player1Label.Location = new Point(250, 1203);
-            player1Label.Margin = new Padding(4, 0, 4, 0);
-            player1Label.Name = "player1Label";
-            player1Label.Size = new Size(115, 29);
-            player1Label.TabIndex = 2;
-            player1Label.Text = "Игрок 1:";
-            // 
-            // player2Label
-            // 
-            player2Label.AutoSize = true;
-            player2Label.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            player2Label.ForeColor = Color.White;
-            player2Label.Location = new Point(562, 1203);
-            player2Label.Margin = new Padding(4, 0, 4, 0);
-            player2Label.Name = "player2Label";
-            player2Label.Size = new Size(115, 29);
-            player2Label.TabIndex = 4;
-            player2Label.Text = "Игрок 2:";
-            // 
-            // player1ColorPanel
-            // 
-            player1ColorPanel.BackColor = Color.Orange;
-            player1ColorPanel.BorderStyle = BorderStyle.FixedSingle;
-            player1ColorPanel.Location = new Point(412, 1203);
-            player1ColorPanel.Margin = new Padding(4, 5, 4, 5);
-            player1ColorPanel.Name = "player1ColorPanel";
-            player1ColorPanel.Size = new Size(37, 46);
-            player1ColorPanel.TabIndex = 3;
-            // 
-            // player2ColorPanel
-            // 
-            player2ColorPanel.BackColor = Color.Yellow;
-            player2ColorPanel.BorderStyle = BorderStyle.FixedSingle;
-            player2ColorPanel.Location = new Point(725, 1203);
-            player2ColorPanel.Margin = new Padding(4, 5, 4, 5);
-            player2ColorPanel.Name = "player2ColorPanel";
-            player2ColorPanel.Size = new Size(37, 46);
-            player2ColorPanel.TabIndex = 5;
-            // 
-            // turnLabel
-            // 
-            turnLabel.AutoSize = true;
-            turnLabel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
-            turnLabel.ForeColor = Color.White;
-            turnLabel.Location = new Point(688, 78);
-            turnLabel.Margin = new Padding(4, 0, 4, 0);
-            turnLabel.Name = "turnLabel";
-            turnLabel.Size = new Size(196, 32);
-            turnLabel.TabIndex = 6;
-            turnLabel.Text = "Ход игрока 1";
-            turnLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
+            this.gamePanel = new Panel();
+            this.completeButton = new Button();
+            this.player1Label = new Label();
+            this.player2Label = new Label();
+            this.player1ColorPanel = new Panel();
+            this.player2ColorPanel = new Panel();
+            this.turnLabel = new Label();
+            this.waitingLabel = new Label();
+
+            // Form
+            this.AutoScaleDimensions = new SizeF(8F, 16F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.BackColor = Color.RoyalBlue; 
+            this.ClientSize = new Size(1400, 850);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "GameForm";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Сама игра - Четвертая форма";
+            this.gamePanel.BackColor = Color.FromArgb(0, 0, 139);
+            this.gamePanel.BorderStyle = BorderStyle.Fixed3D;
+            this.gamePanel.Location = new Point(100, 100);
+            this.gamePanel.Name = "gamePanel";
+            this.gamePanel.Size = new Size(900, 650);
+            this.gamePanel.TabIndex = 0;
+
             // waitingLabel
-            // 
-            waitingLabel.BackColor = Color.Transparent;
-            waitingLabel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
-            waitingLabel.ForeColor = Color.White;
-            waitingLabel.Location = new Point(1125, 1016);
-            waitingLabel.Margin = new Padding(4, 0, 4, 0);
-            waitingLabel.Name = "waitingLabel";
-            waitingLabel.Size = new Size(500, 62);
-            waitingLabel.TabIndex = 7;
-            waitingLabel.Text = "Ожидание второго игрока...";
-            waitingLabel.TextAlign = ContentAlignment.MiddleCenter;
-            waitingLabel.Visible = false;
-            // 
-            // GameForm
-            // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.RoyalBlue;
-            ClientSize = new Size(1750, 1328);
-            Controls.Add(waitingLabel);
-            Controls.Add(turnLabel);
-            Controls.Add(player2ColorPanel);
-            Controls.Add(player2Label);
-            Controls.Add(player1ColorPanel);
-            Controls.Add(player1Label);
-            Controls.Add(completeButton);
-            Controls.Add(gamePanel);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(4, 5, 4, 5);
-            MaximizeBox = false;
-            Name = "GameForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Сама игра";
-            ResumeLayout(false);
-            PerformLayout();
+            this.waitingLabel.AutoSize = false;
+            this.waitingLabel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
+            this.waitingLabel.ForeColor = Color.White;
+            this.waitingLabel.BackColor = Color.Transparent;
+            this.waitingLabel.Size = new Size(400, 40);
+            this.waitingLabel.Location = new Point(
+                (this.gamePanel.Width - 400) / 2,
+                (this.gamePanel.Height - 40) / 2);
+            this.waitingLabel.Name = "waitingLabel";
+            this.waitingLabel.TabIndex = 7;
+            this.waitingLabel.Text = "Ожидание второго игрока...";
+            this.waitingLabel.TextAlign = ContentAlignment.MiddleCenter;
+            this.waitingLabel.Visible = false;
+
+            // completeButton
+            this.completeButton.BackColor = Color.White;
+            this.completeButton.Font = new Font("Microsoft Sans Serif", 14F);
+            this.completeButton.Location = new Point(1150, 750);
+            this.completeButton.Name = "completeButton";
+            this.completeButton.Size = new Size(180, 50);
+            this.completeButton.TabIndex = 1;
+            this.completeButton.Text = "Завершить";
+            this.completeButton.UseVisualStyleBackColor = false;
+
+            // player1Label
+            this.player1Label.AutoSize = true;
+            this.player1Label.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            this.player1Label.ForeColor = Color.White;
+            this.player1Label.Location = new Point(200, 770);
+            this.player1Label.Name = "player1Label";
+            this.player1Label.Size = new Size(120, 25);
+            this.player1Label.TabIndex = 2;
+            this.player1Label.Text = "Игрок 1:";
+
+            // player1ColorPanel
+            this.player1ColorPanel.BackColor = Color.Orange;
+            this.player1ColorPanel.BorderStyle = BorderStyle.FixedSingle;
+            this.player1ColorPanel.Location = new Point(330, 770);
+            this.player1ColorPanel.Name = "player1ColorPanel";
+            this.player1ColorPanel.Size = new Size(30, 30);
+            this.player1ColorPanel.TabIndex = 3;
+
+            // player2Label
+            this.player2Label.AutoSize = true;
+            this.player2Label.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            this.player2Label.ForeColor = Color.White;
+            this.player2Label.Location = new Point(450, 770);
+            this.player2Label.Name = "player2Label";
+            this.player2Label.Size = new Size(120, 25);
+            this.player2Label.TabIndex = 4;
+            this.player2Label.Text = "Игрок 2:";
+
+            // player2ColorPanel
+            this.player2ColorPanel.BackColor = Color.Yellow;
+            this.player2ColorPanel.BorderStyle = BorderStyle.FixedSingle;
+            this.player2ColorPanel.Location = new Point(580, 770);
+            this.player2ColorPanel.Name = "player2ColorPanel";
+            this.player2ColorPanel.Size = new Size(30, 30);
+            this.player2ColorPanel.TabIndex = 5;
+
+            // turnLabel
+            this.turnLabel.AutoSize = true;
+            this.turnLabel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            this.turnLabel.ForeColor = Color.White;
+            this.turnLabel.Location = new Point(550, 50);
+            this.turnLabel.Name = "turnLabel";
+            this.turnLabel.Size = new Size(300, 29);
+            this.turnLabel.TabIndex = 6;
+            this.turnLabel.Text = "Ход игрока 1";
+            this.turnLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            this.Controls.Add(this.waitingLabel);
+            this.Controls.Add(this.turnLabel);
+            this.Controls.Add(this.player2ColorPanel);
+            this.Controls.Add(this.player2Label);
+            this.Controls.Add(this.player1ColorPanel);
+            this.Controls.Add(this.player1Label);
+            this.Controls.Add(this.completeButton);
+            this.Controls.Add(this.gamePanel);
+
+            InitializeGameButtons();
         }
 
         private void InitializeGameButtons()
@@ -160,8 +143,8 @@ namespace Project3.Forms
             if (gamePanel == null) return;
 
             gameButtons = new Button[6, 7];
-            int buttonSize = 90; 
-            int spacing = 10;    
+            int buttonSize = 90;
+            int spacing = 10;
             int startX = (gamePanel.Width - (7 * buttonSize + 6 * spacing)) / 2;
             int startY = (gamePanel.Height - (6 * buttonSize + 5 * spacing)) / 2;
 
