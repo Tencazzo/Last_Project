@@ -135,7 +135,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Рейтинг и запуск игры";
+            this.Text = string.Empty;
             leaderboardPanel.ResumeLayout(false);
             leaderboardPanel.PerformLayout();
             ResumeLayout(false);

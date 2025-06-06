@@ -39,6 +39,8 @@ namespace Project3.Forms
         {
             if (repeatGameButton != null)
                 repeatGameButton.Text = _localizationService.GetString("RepeatGame");
+            this.Text = _localizationService.GetString("ResultFormTitle");
+
             if (ratingButton != null)
                 ratingButton.Text = _localizationService.GetString("Rating");
         }

@@ -134,7 +134,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Авторизация";
+            this.Text = string.Empty;
             ResumeLayout(false);
             PerformLayout();
         }

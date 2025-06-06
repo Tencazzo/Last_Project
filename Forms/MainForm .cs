@@ -67,6 +67,7 @@ namespace Project3.Forms
         {
             if (leaderboardTitleLabel != null)
                 leaderboardTitleLabel.Text = _localizationService.GetString("Leaderboard");
+            this.Text = _localizationService.GetString("MainFormTitle");
             if (leaderboardHeaderLabel != null)
                 leaderboardHeaderLabel.Text = _localizationService.GetString("UsernamePoints");
             if (newGameButton != null)

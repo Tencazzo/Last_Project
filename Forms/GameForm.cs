@@ -84,6 +84,7 @@ namespace Project3.Forms
             {
                 if (completeButton != null)
                     completeButton.Text = _localizationService.GetString("Complete");
+                this.Text = _localizationService.GetString("GameFormTitle");
 
                 if (player1Label != null)
                     player1Label.Text = _localizationService.GetString("Player1") + ":";
@@ -91,6 +92,8 @@ namespace Project3.Forms
                 if (player2Label != null)
                     player2Label.Text = _localizationService.GetString("Player2") + ":";
 
+                if (turnLabel != null && !_gameStarted)
+                    turnLabel.Text = _localizationService.GetString("WaitingForPlayer");
                 if (waitingLabel != null)
                     waitingLabel.Text = _localizationService.GetString("WaitingForPlayer");
             }
@@ -126,11 +129,11 @@ namespace Project3.Forms
                     if (_networkService.IsServer)
                     {
                         if (player1Label != null)
-                            player1Label.Text = _userService.CurrentUser.Login + " (Хост):";
+                            player1Label.Text = _userService.CurrentUser.Login + $" ({_localizationService.GetString("Host")}):";
                         if (player2Label != null && _gameStarted)
-                            player2Label.Text = "Гость:";
+                            player2Label.Text = $"{_localizationService.GetString("Guest")}:";
                         else if (player2Label != null)
-                            player2Label.Text = "Ожидание гостя...";
+                            player2Label.Text = _localizationService.GetString("WaitingForGuest");
                     }
                     else if (_networkService.IsConnected)
                     {

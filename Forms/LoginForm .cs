@@ -68,6 +68,7 @@ namespace Project3.Forms
         {
             if (titleLabel != null)
                 titleLabel.Text = _localizationService.GetString("Authorization");
+            this.Text = _localizationService.GetString("LoginFormTitle");
 
             if (loginTextBox?.ForeColor == Color.Gray)
                 loginTextBox.Text = _localizationService.GetString("Login");

@@ -176,7 +176,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Регистрация";
+            this.Text = string.Empty;
             ResumeLayout(false);
             PerformLayout();
         }

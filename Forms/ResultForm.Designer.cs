@@ -78,7 +78,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "ResultForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Результат игры";
+            this.Text = string.Empty;
             ResumeLayout(false);
             PerformLayout();
         }

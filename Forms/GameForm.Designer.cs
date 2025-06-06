@@ -46,14 +46,14 @@ namespace Project3.Forms
             this.MaximizeBox = false;
             this.Name = "GameForm";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Игра";
+            this.Text = string.Empty;
             this.gamePanel.BackColor = Color.FromArgb(0, 0, 139);
             this.gamePanel.BorderStyle = BorderStyle.Fixed3D;
             this.gamePanel.Location = new Point(100, 100);
             this.gamePanel.Name = "gamePanel";
             this.gamePanel.Size = new Size(900, 650);
             this.gamePanel.TabIndex = 0;
-
+            /*
             // waitingLabel
             this.waitingLabel.AutoSize = false;
             this.waitingLabel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
@@ -65,10 +65,10 @@ namespace Project3.Forms
                 (this.gamePanel.Height - 40) / 2);
             this.waitingLabel.Name = "waitingLabel";
             this.waitingLabel.TabIndex = 7;
-            this.waitingLabel.Text = "Ожидание второго игрока...";
+            this.waitingLabel.Text = string.Empty;
             this.waitingLabel.TextAlign = ContentAlignment.MiddleCenter;
             this.waitingLabel.Visible = false;
-
+            */
             // completeButton
             this.completeButton.BackColor = Color.White;
             this.completeButton.Font = new Font("Microsoft Sans Serif", 14F);
@@ -123,7 +123,7 @@ namespace Project3.Forms
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new Size(300, 29);
             this.turnLabel.TabIndex = 6;
-            this.turnLabel.Text = "Ход игрока 1";
+            this.turnLabel.Text = string.Empty;
             this.turnLabel.TextAlign = ContentAlignment.MiddleCenter;
 
             this.Controls.Add(this.waitingLabel);

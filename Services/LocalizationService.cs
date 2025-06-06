@@ -36,6 +36,15 @@ namespace Project3.Services
                     ["Player2"] = "Игрок 2",
                     ["YourTurn"] = "Ваш ход",
                     ["OpponentTurn"] = "Ход соперника",
+                    ["GameFormTitle"] = "Игра",
+                    ["LoginFormTitle"] = "Авторизация",
+                    ["MainFormTitle"] = "Рейтинг и запуск игры",
+                    ["RegisterFormTitle"] = "Регистрация",
+                    ["ResultFormTitle"] = "Результат игры",
+                    ["WaitingForPlayer"] = "Ожидание второго игрока...",
+                    ["WaitingForGuest"] = "Ожидание гостя",
+                    ["Host"] = "Хост",
+                    ["Guest"] = "Гость"
                 },
                 ["en"] = new Dictionary<string, string>
                 {
@@ -60,6 +69,14 @@ namespace Project3.Services
                     ["Player2"] = "Player 2",
                     ["YourTurn"] = "Your turn",
                     ["OpponentTurn"] = "Opponent's turn",
+                    ["GameFormTitle"] = "Game",
+                    ["LoginFormTitle"] = "Authorization",
+                    ["MainFormTitle"] = "Rating and game start",
+                    ["RegisterFormTitle"] = "Registration",
+                    ["ResultFormTitle"] = "Game result",
+                    ["WaitingForPlayer"] = "Waiting for player...",
+                    ["WaitingForGuest"] = "Waiting for guest",
+                    ["Guest"] = "Guest"
                 }
             };
         }
