@@ -182,15 +182,15 @@ namespace Project3.Forms
                 {
                     if (_networkService.IsServer)
                     {
-                        turnLabel.Text = "Ожидание второго игрока...";
+                        turnLabel.Text = _localizationService.GetString("WaitingForPlayer");
                     }
                     else if (_networkService.IsConnected)
                     {
-                        turnLabel.Text = "Подключен к игре, ожидание начала...";
+                        turnLabel.Text = _localizationService.GetString("ConnectedWaitingForStart");
                     }
                     else
                     {
-                        turnLabel.Text = "Подключение к серверу...";
+                        turnLabel.Text = _localizationService.GetString("ConnectingToServer");
                     }
                     turnLabel.ForeColor = Color.White;
                     return;
@@ -202,12 +202,12 @@ namespace Project3.Forms
 
                 if (isMyTurnNow)
                 {
-                    turnLabel.Text = "Ваш ход";
+                    turnLabel.Text = _localizationService.GetString("YourTurn");
                     turnLabel.ForeColor = _networkService.IsServer ? Color.Orange : Color.Yellow;
                 }
                 else
                 {
-                    turnLabel.Text = "Ход соперника";
+                    turnLabel.Text = _localizationService.GetString("OpponentTurn");
                     turnLabel.ForeColor = _networkService.IsServer ? Color.Yellow : Color.Orange;
                 }
 
@@ -218,7 +218,6 @@ namespace Project3.Forms
                 _logger.LogError($"Error updating turn label: {ex.Message}", ex);
             }
         }
-
         private void EnableGameButtons(bool enabled)
         {
             if (gameButtons == null) return;
