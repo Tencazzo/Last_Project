@@ -322,7 +322,6 @@ namespace Project3.Forms
             {
                 _logger.LogInfo($"StartGameInternal called. IsServer: {_networkService.IsServer}");
 
-                // Определяем номер игрока
                 _myPlayerNumber = _networkService.IsServer ? 1 : 2;
                 _logger.LogInfo($"My player number: {_myPlayerNumber}");
 
@@ -843,14 +842,11 @@ namespace Project3.Forms
 
                         if (button != null)
                         {
-                            // Правильное соответствие цветов:
-                            // Игрок 1 (сервер) = Оранжевый
-                            // Игрок 2 (клиент) = Желтый
                             button.BackColor = cellValue switch
                             {
-                                1 => Color.Orange,  // Сервер (хост)
-                                2 => Color.Yellow,  // Клиент (гость)
-                                _ => Color.White    // Пустая клетка
+                                1 => Color.Orange,  
+                                2 => Color.Yellow,  
+                                _ => Color.White    
                             };
                         }
                     }
