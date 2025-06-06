@@ -21,7 +21,7 @@ namespace Project3.Forms
         private volatile bool _gameStarted = false;
         private volatile bool _connectionAttemptMade = false;
         private readonly object _lockObject = new object();
-        private int _myPlayerNumber; 
+        private int _myPlayerNumber;
 
         public GameForm(IGameService gameService, INetworkService networkService,
             ILocalizationService localizationService, ILogger logger, IUserService userService)
@@ -68,7 +68,7 @@ namespace Project3.Forms
                 _networkService.MoveReceived += OnMoveReceived;
                 _networkService.PlayerConnected += OnPlayerConnected;
                 _networkService.PlayerDisconnected += OnPlayerDisconnected;
-                _networkService.GameEnded += OnGameEnded; 
+                _networkService.GameEnded += OnGameEnded;
 
                 _logger.LogInfo("Event handlers set up successfully");
             }
@@ -830,9 +830,9 @@ namespace Project3.Forms
                         {
                             button.BackColor = cellValue switch
                             {
-                                1 => Color.Orange,  
-                                2 => Color.Yellow,  
-                                _ => Color.White    
+                                1 => Color.Orange,
+                                2 => Color.Yellow,
+                                _ => Color.White
                             };
                         }
                     }

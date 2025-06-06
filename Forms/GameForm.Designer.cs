@@ -40,13 +40,13 @@ namespace Project3.Forms
             // Form
             this.AutoScaleDimensions = new SizeF(8F, 16F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.RoyalBlue; 
+            this.BackColor = Color.RoyalBlue;
             this.ClientSize = new Size(1400, 850);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "GameForm";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Сама игра - Четвертая форма";
+            this.Text = "Игра";
             this.gamePanel.BackColor = Color.FromArgb(0, 0, 139);
             this.gamePanel.BorderStyle = BorderStyle.Fixed3D;
             this.gamePanel.Location = new Point(100, 100);
