@@ -129,17 +129,14 @@ namespace Project3.Forms
 
             e.DrawBackground();
 
-            // Настройки для центрирования текста
             StringFormat sf = new StringFormat
             {
                 LineAlignment = StringAlignment.Center,
                 Alignment = StringAlignment.Center
             };
 
-            // Определение цвета текста (чтобы выделялся на белом фоне)
             Brush textBrush = new SolidBrush(Color.Black);
 
-            // Отрисовка текста по центру
             e.Graphics.DrawString(leaderboardListBox.Items[e.Index].ToString(),
                                  e.Font,
                                  textBrush,
@@ -152,7 +149,6 @@ namespace Project3.Forms
 
         private void LeaderboardListBox_MeasureItem(object? sender, MeasureItemEventArgs e)
         {
-            e.ItemHeight = 35; // Высота каждой строки в списке
-        }
+            e.ItemHeight = 35;        }
     }
 }
