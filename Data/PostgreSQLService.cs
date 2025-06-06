@@ -16,7 +16,6 @@ namespace Project3.Data
         public PostgreSQLService(ILogger logger)
         {
             _logger = logger;
-            // Обновленная строка подключения с более стандартными настройками
             _connectionString = "Host=localhost;Port=5432;Database=connectfour;Username=postgres;Password=postgres;";
         }
 
@@ -24,21 +23,18 @@ namespace Project3.Data
         {
             try
             {
-                // Сначала попробуем подключиться к базе postgres для создания нашей базы
                 var masterConnectionString = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres;";
 
                 using (var masterConnection = new NpgsqlConnection(masterConnectionString))
                 {
                     masterConnection.Open();
 
-                    // Проверяем, существует ли база данных
                     var checkDbQuery = "SELECT 1 FROM pg_database WHERE datname = 'connectfour'";
                     using var checkCmd = new NpgsqlCommand(checkDbQuery, masterConnection);
                     var dbExists = checkCmd.ExecuteScalar();
 
                     if (dbExists == null)
                     {
-                        // Создаем базу данных
                         var createDbQuery = "CREATE DATABASE connectfour";
                         using var createCmd = new NpgsqlCommand(createDbQuery, masterConnection);
                         createCmd.ExecuteNonQuery();
@@ -46,11 +42,9 @@ namespace Project3.Data
                     }
                 }
 
-                // Теперь подключаемся к нашей базе и создаем таблицы
                 using var appConnection = new NpgsqlConnection(_connectionString);
                 appConnection.Open();
 
-                // Создание таблицы пользователей
                 var createUsersTable = @"
                     CREATE TABLE IF NOT EXISTS users (
                         id SERIAL PRIMARY KEY,
@@ -61,7 +55,6 @@ namespace Project3.Data
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
 
-                // Создание таблицы игр
                 var createGamesTable = @"
                     CREATE TABLE IF NOT EXISTS games (
                         id SERIAL PRIMARY KEY,
@@ -107,7 +100,7 @@ namespace Project3.Data
                 _logger.LogInfo($"User {user.Login} created successfully");
                 return true;
             }
-            catch (PostgresException ex) when (ex.SqlState == "23505") // Unique violation
+            catch (PostgresException ex) when (ex.SqlState == "23505")
             {
                 _logger.LogWarning($"User {user.Login} already exists");
                 return false;

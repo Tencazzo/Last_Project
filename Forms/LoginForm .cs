@@ -150,7 +150,7 @@ namespace Project3.Forms
 
                 var mainForm = DIContainer.Resolve<MainForm>();
                 mainForm.Show();
-                this.Hide(); // Change from Close() to Hide()
+                this.Hide(); 
             }
             else
             {
@@ -163,7 +163,7 @@ namespace Project3.Forms
         {
             var registerForm = DIContainer.Resolve<RegisterForm>();
             registerForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide();
         }
     }
 }

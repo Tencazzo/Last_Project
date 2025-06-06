@@ -15,7 +15,6 @@ namespace Project3
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
-            // Обработчик необработанных исключений
             Application.ThreadException += (sender, e) =>
             {
                 MessageBox.Show($"Произошла ошибка: {e.Exception.Message}", "Ошибка",
@@ -30,10 +29,8 @@ namespace Project3
 
             try
             {
-                // Инициализация DI контейнера
                 DIContainer.Initialize();
 
-                // Инициализация базы данных
                 var databaseService = DIContainer.Resolve<IDatabaseService>();
                 if (!databaseService.InitializeDatabase())
                 {
@@ -42,7 +39,6 @@ namespace Project3
                     return;
                 }
 
-                // Запуск формы авторизации
                 var loginForm = DIContainer.Resolve<LoginForm>();
                 Application.Run(loginForm);
             }

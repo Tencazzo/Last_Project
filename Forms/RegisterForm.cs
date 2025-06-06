@@ -173,7 +173,7 @@ namespace Project3.Forms
 
                 var loginForm = DIContainer.Resolve<LoginForm>();
                 loginForm.Show();
-                this.Hide(); // Change from Close() to Hide()
+                this.Hide(); 
             }
             else
             {
@@ -235,7 +235,7 @@ namespace Project3.Forms
         {
             var loginForm = DIContainer.Resolve<LoginForm>();
             loginForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide(); 
         }
     }
 }

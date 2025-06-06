@@ -99,7 +99,7 @@ namespace Project3.Forms
 
             var gameForm = DIContainer.Resolve<GameForm>();
             gameForm.Show();
-            this.Hide(); // Скрываем главную форму, но не закрываем
+            this.Hide(); 
         }
 
         private void LogoutButton_Click(object? sender, EventArgs e)
@@ -107,7 +107,6 @@ namespace Project3.Forms
             _userService.Logout();
             _logger.LogInfo("User logged out");
 
-            // Find the existing login form or create a new one
             var loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
             if (loginForm == null)
             {
@@ -115,14 +114,13 @@ namespace Project3.Forms
             }
 
             loginForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
 
-            // Завершаем приложение при закрытии главной формы
             Application.Exit();
         }
         private void LeaderboardListBox_DrawItem(object? sender, DrawItemEventArgs e)

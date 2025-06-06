@@ -160,9 +160,8 @@ namespace Project3.Forms
             if (gamePanel == null) return;
 
             gameButtons = new Button[6, 7];
-            int buttonSize = 90; // Уменьшаем размер кнопок
-            int spacing = 10;    // Уменьшаем промежутки
-                                 // Увеличиваем отступы от краев панели
+            int buttonSize = 90; 
+            int spacing = 10;    
             int startX = (gamePanel.Width - (7 * buttonSize + 6 * spacing)) / 2;
             int startY = (gamePanel.Height - (6 * buttonSize + 5 * spacing)) / 2;
 
