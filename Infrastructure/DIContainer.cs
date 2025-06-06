@@ -16,7 +16,6 @@ namespace Project3.Infrastructure
         {
             _container = new WindsorContainer();
 
-            // Регистрация сервисов
             _container.Register(Component.For<ILogger>().ImplementedBy<FileLogger>().LifestyleSingleton());
             _container.Register(Component.For<ILocalizationService>().ImplementedBy<LocalizationService>().LifestyleSingleton());
             _container.Register(Component.For<IDatabaseService>().ImplementedBy<PostgreSQLService>().LifestyleSingleton());
@@ -24,7 +23,6 @@ namespace Project3.Infrastructure
             _container.Register(Component.For<IGameService>().ImplementedBy<GameService>().LifestyleSingleton());
             _container.Register(Component.For<INetworkService>().ImplementedBy<NetworkService>().LifestyleSingleton());
 
-            // Регистрация форм
             _container.Register(Component.For<LoginForm>().LifestyleTransient());
             _container.Register(Component.For<RegisterForm>().LifestyleTransient());
             _container.Register(Component.For<MainForm>().LifestyleTransient());

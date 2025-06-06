@@ -82,6 +82,7 @@ namespace Project3.Forms
         {
             if (titleLabel != null)
                 titleLabel.Text = _localizationService.GetString("Registration");
+            this.Text = _localizationService.GetString("RegisterFormTitle");
 
             if (loginTextBox?.ForeColor == Color.Gray)
                 loginTextBox.Text = _localizationService.GetString("Login");
@@ -173,7 +174,7 @@ namespace Project3.Forms
 
                 var loginForm = DIContainer.Resolve<LoginForm>();
                 loginForm.Show();
-                this.Hide(); // Change from Close() to Hide()
+                this.Hide(); 
             }
             else
             {
@@ -235,7 +236,7 @@ namespace Project3.Forms
         {
             var loginForm = DIContainer.Resolve<LoginForm>();
             loginForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide(); 
         }
     }
 }

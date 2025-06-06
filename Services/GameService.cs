@@ -46,14 +46,10 @@ namespace Project3.Services
             if (_isGameOver || column < 0 || column >= COLS)
                 return false;
 
-            // Найти первую свободную строку в колонке
             for (int row = ROWS - 1; row >= 0; row--)
             {
                 if (_board[row, column] == 0)
                 {
-                    // Определяем игрока для хода
-                    // Игрок 1 (сервер) всегда делает ходы как игрок 1
-                    // Игрок 2 (клиент) всегда делает ходы как игрок 2
                     int playerToMove = _currentPlayer;
 
                     _board[row, column] = playerToMove;
@@ -68,12 +64,11 @@ namespace Project3.Services
                     else if (IsBoardFull())
                     {
                         _isGameOver = true;
-                        _winner = null; // Ничья
+                        _winner = null; 
                         _logger.LogInfo("Game ended in a draw");
                     }
                     else
                     {
-                        // Переключаем текущего игрока
                         _currentPlayer = _currentPlayer == 1 ? 2 : 1;
                         _logger.LogInfo($"Current player switched to: {_currentPlayer}");
                     }
@@ -82,12 +77,11 @@ namespace Project3.Services
                 }
             }
 
-            return false; // Колонка заполнена
+            return false; 
         }
 
         public bool CheckWin()
         {
-            // Проверка горизонтальных линий
             for (int row = 0; row < ROWS; row++)
             {
                 for (int col = 0; col <= COLS - 4; col++)
@@ -102,7 +96,6 @@ namespace Project3.Services
                 }
             }
 
-            // Проверка вертикальных линий
             for (int col = 0; col < COLS; col++)
             {
                 for (int row = 0; row <= ROWS - 4; row++)
@@ -117,7 +110,6 @@ namespace Project3.Services
                 }
             }
 
-            // Проверка диагональных линий (слева направо)
             for (int row = 0; row <= ROWS - 4; row++)
             {
                 for (int col = 0; col <= COLS - 4; col++)
@@ -132,7 +124,6 @@ namespace Project3.Services
                 }
             }
 
-            // Проверка диагональных линий (справа налево)
             for (int row = 0; row <= ROWS - 4; row++)
             {
                 for (int col = 3; col < COLS; col++)
@@ -162,7 +153,6 @@ namespace Project3.Services
 
         public void ResetGame()
         {
-            // Очищаем доску
             for (int i = 0; i < ROWS; i++)
             {
                 for (int j = 0; j < COLS; j++)
@@ -171,7 +161,7 @@ namespace Project3.Services
                 }
             }
 
-            _currentPlayer = 1; // Всегда начинает игрок 1 (сервер)
+            _currentPlayer = 1; 
             _isGameOver = false;
             _winner = null;
             _logger.LogInfo("Game reset - board cleared, player 1 starts");

@@ -40,25 +40,20 @@ namespace Project3.Forms
             // Form
             this.AutoScaleDimensions = new SizeF(8F, 16F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.FromArgb(123, 104, 238);
+            this.BackColor = Color.RoyalBlue;
             this.ClientSize = new Size(1400, 850);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "GameForm";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Сама игра - Четвертая форма";
-
-            // gamePanel - увеличиваем еще больше для гарантии
-            // 7 кнопок * 100px + 6 промежутков * 15px + отступы 50px с каждой стороны
-            // Ширина: 7*100 + 6*15 + 100 = 700 + 90 + 100 = 890
-            // Высота: 6*100 + 5*15 + 100 = 600 + 75 + 100 = 775
+            this.Text = string.Empty;
             this.gamePanel.BackColor = Color.FromArgb(0, 0, 139);
             this.gamePanel.BorderStyle = BorderStyle.Fixed3D;
             this.gamePanel.Location = new Point(100, 100);
             this.gamePanel.Name = "gamePanel";
             this.gamePanel.Size = new Size(900, 650);
             this.gamePanel.TabIndex = 0;
-
+            /*
             // waitingLabel
             this.waitingLabel.AutoSize = false;
             this.waitingLabel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Bold);
@@ -70,10 +65,10 @@ namespace Project3.Forms
                 (this.gamePanel.Height - 40) / 2);
             this.waitingLabel.Name = "waitingLabel";
             this.waitingLabel.TabIndex = 7;
-            this.waitingLabel.Text = "Ожидание второго игрока...";
+            this.waitingLabel.Text = string.Empty;
             this.waitingLabel.TextAlign = ContentAlignment.MiddleCenter;
             this.waitingLabel.Visible = false;
-
+            */
             // completeButton
             this.completeButton.BackColor = Color.White;
             this.completeButton.Font = new Font("Microsoft Sans Serif", 14F);
@@ -128,7 +123,7 @@ namespace Project3.Forms
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new Size(300, 29);
             this.turnLabel.TabIndex = 6;
-            this.turnLabel.Text = "Ход игрока 1";
+            this.turnLabel.Text = string.Empty;
             this.turnLabel.TextAlign = ContentAlignment.MiddleCenter;
 
             this.Controls.Add(this.waitingLabel);
@@ -140,7 +135,6 @@ namespace Project3.Forms
             this.Controls.Add(this.completeButton);
             this.Controls.Add(this.gamePanel);
 
-            // Initialize game buttons after adding controls
             InitializeGameButtons();
         }
 
@@ -149,9 +143,8 @@ namespace Project3.Forms
             if (gamePanel == null) return;
 
             gameButtons = new Button[6, 7];
-            int buttonSize = 90; // Уменьшаем размер кнопок
-            int spacing = 10;    // Уменьшаем промежутки
-                                 // Увеличиваем отступы от краев панели
+            int buttonSize = 90;
+            int spacing = 10;
             int startX = (gamePanel.Width - (7 * buttonSize + 6 * spacing)) / 2;
             int startY = (gamePanel.Height - (6 * buttonSize + 5 * spacing)) / 2;
 

@@ -21,7 +21,7 @@ namespace Project3.Forms
         private volatile bool _gameStarted = false;
         private volatile bool _connectionAttemptMade = false;
         private readonly object _lockObject = new object();
-        private int _myPlayerNumber; // 1 для сервера, 2 для клиента
+        private int _myPlayerNumber;
 
         public GameForm(IGameService gameService, INetworkService networkService,
             ILocalizationService localizationService, ILogger logger, IUserService userService)
@@ -52,7 +52,6 @@ namespace Project3.Forms
             base.OnLoad(e);
             _logger.LogInfo("GameForm loaded, starting network connection");
 
-            // Сбрасываем игру при загрузке формы
             _gameService.ResetGame();
             ClearGameBoard();
 
@@ -69,7 +68,7 @@ namespace Project3.Forms
                 _networkService.MoveReceived += OnMoveReceived;
                 _networkService.PlayerConnected += OnPlayerConnected;
                 _networkService.PlayerDisconnected += OnPlayerDisconnected;
-                _networkService.GameEnded += OnGameEnded; // Новый обработчик
+                _networkService.GameEnded += OnGameEnded;
 
                 _logger.LogInfo("Event handlers set up successfully");
             }
@@ -85,6 +84,7 @@ namespace Project3.Forms
             {
                 if (completeButton != null)
                     completeButton.Text = _localizationService.GetString("Complete");
+                this.Text = _localizationService.GetString("GameFormTitle");
 
                 if (player1Label != null)
                     player1Label.Text = _localizationService.GetString("Player1") + ":";
@@ -92,6 +92,8 @@ namespace Project3.Forms
                 if (player2Label != null)
                     player2Label.Text = _localizationService.GetString("Player2") + ":";
 
+                if (turnLabel != null && !_gameStarted)
+                    turnLabel.Text = _localizationService.GetString("WaitingForPlayer");
                 if (waitingLabel != null)
                     waitingLabel.Text = _localizationService.GetString("WaitingForPlayer");
             }
@@ -127,11 +129,11 @@ namespace Project3.Forms
                     if (_networkService.IsServer)
                     {
                         if (player1Label != null)
-                            player1Label.Text = _userService.CurrentUser.Login + " (Хост):";
+                            player1Label.Text = _userService.CurrentUser.Login + $" ({_localizationService.GetString("Host")}):";
                         if (player2Label != null && _gameStarted)
-                            player2Label.Text = "Гость:";
+                            player2Label.Text = $"{_localizationService.GetString("Guest")}:";
                         else if (player2Label != null)
-                            player2Label.Text = "Ожидание гостя...";
+                            player2Label.Text = _localizationService.GetString("WaitingForGuest");
                     }
                     else if (_networkService.IsConnected)
                     {
@@ -180,15 +182,15 @@ namespace Project3.Forms
                 {
                     if (_networkService.IsServer)
                     {
-                        turnLabel.Text = "Ожидание второго игрока...";
+                        turnLabel.Text = _localizationService.GetString("WaitingForPlayer");
                     }
                     else if (_networkService.IsConnected)
                     {
-                        turnLabel.Text = "Подключен к игре, ожидание начала...";
+                        turnLabel.Text = _localizationService.GetString("ConnectedWaitingForStart");
                     }
                     else
                     {
-                        turnLabel.Text = "Подключение к серверу...";
+                        turnLabel.Text = _localizationService.GetString("ConnectingToServer");
                     }
                     turnLabel.ForeColor = Color.White;
                     return;
@@ -196,17 +198,16 @@ namespace Project3.Forms
 
                 _logger.LogInfo($"Updating turn label. IsMyTurn: {_isMyTurn}, MyPlayerNumber: {_myPlayerNumber}, CurrentPlayer: {_gameService.CurrentPlayer}");
 
-                // Проверяем, наш ли сейчас ход
                 bool isMyTurnNow = (_gameService.CurrentPlayer == _myPlayerNumber);
 
                 if (isMyTurnNow)
                 {
-                    turnLabel.Text = "Ваш ход";
+                    turnLabel.Text = _localizationService.GetString("YourTurn");
                     turnLabel.ForeColor = _networkService.IsServer ? Color.Orange : Color.Yellow;
                 }
                 else
                 {
-                    turnLabel.Text = "Ход соперника";
+                    turnLabel.Text = _localizationService.GetString("OpponentTurn");
                     turnLabel.ForeColor = _networkService.IsServer ? Color.Yellow : Color.Orange;
                 }
 
@@ -217,7 +218,6 @@ namespace Project3.Forms
                 _logger.LogError($"Error updating turn label: {ex.Message}", ex);
             }
         }
-
         private void EnableGameButtons(bool enabled)
         {
             if (gameButtons == null) return;
@@ -322,34 +322,27 @@ namespace Project3.Forms
             {
                 _logger.LogInfo($"StartGameInternal called. IsServer: {_networkService.IsServer}");
 
-                // Определяем номер игрока
                 _myPlayerNumber = _networkService.IsServer ? 1 : 2;
                 _logger.LogInfo($"My player number: {_myPlayerNumber}");
 
-                // Сбрасываем игру и очищаем поле
                 _gameService.ResetGame();
                 ClearGameBoard();
 
-                // Скрываем waitingLabel
                 if (waitingLabel != null)
                 {
                     waitingLabel.Visible = false;
                     _logger.LogInfo("WaitingLabel hidden");
                 }
 
-                // Включаем кнопки игры
                 EnableGameButtonsInternal(true);
 
-                // Определяем, кто ходит первым (всегда игрок 1 - сервер)
                 _isMyTurn = (_myPlayerNumber == 1);
 
                 _logger.LogInfo($"Game started. IsServer: {_networkService.IsServer}, MyPlayerNumber: {_myPlayerNumber}, IsMyTurn: {_isMyTurn}, _gameStarted: {_gameStarted}");
 
-                // Обновляем UI
                 UpdateTurnLabelInternal();
                 UpdatePlayerLabelsInternal();
 
-                // Принудительно обновляем форму
                 this.Refresh();
 
                 _logger.LogInfo("Network game started - both players connected");
@@ -429,7 +422,6 @@ namespace Project3.Forms
 
                 await Task.Delay(1000);
 
-                // Показываем диалог в основном потоке
                 DialogResult result = DialogResult.Cancel;
                 if (this.IsHandleCreated && !this.IsDisposed)
                 {
@@ -608,7 +600,6 @@ namespace Project3.Forms
             {
                 _logger.LogInfo($"Game button clicked. GameOver: {_gameService.IsGameOver}, GameStarted: {_gameStarted}, IsConnected: {_networkService.IsConnected}, IsMyTurn: {_isMyTurn}, CurrentPlayer: {_gameService.CurrentPlayer}, MyPlayerNumber: {_myPlayerNumber}");
 
-                // Используем lock для проверки состояния
                 bool gameReady;
                 lock (_lockObject)
                 {
@@ -629,7 +620,6 @@ namespace Project3.Forms
                     return;
                 }
 
-                // Проверяем, наш ли ход по номеру игрока
                 if (_gameService.CurrentPlayer != _myPlayerNumber)
                 {
                     _logger.LogInfo($"Game button clicked but not player's turn. CurrentPlayer: {_gameService.CurrentPlayer}, MyPlayerNumber: {_myPlayerNumber}");
@@ -726,7 +716,6 @@ namespace Project3.Forms
 
             try
             {
-                // Используем Invoke для выполнения в UI потоке
                 this.Invoke(new Action(() =>
                 {
                     bool shouldStart;
@@ -746,13 +735,11 @@ namespace Project3.Forms
 
                     if (shouldStart)
                     {
-                        // Запускаем игру
                         StartGame();
 
-                        // Показываем уведомление в отдельной задаче
                         Task.Run(() =>
                         {
-                            Thread.Sleep(100); // Короткая задержка
+                            Thread.Sleep(100); 
 
                             if (this.IsHandleCreated && !this.IsDisposed)
                             {
@@ -843,14 +830,11 @@ namespace Project3.Forms
 
                         if (button != null)
                         {
-                            // Правильное соответствие цветов:
-                            // Игрок 1 (сервер) = Оранжевый
-                            // Игрок 2 (клиент) = Желтый
                             button.BackColor = cellValue switch
                             {
-                                1 => Color.Orange,  // Сервер (хост)
-                                2 => Color.Yellow,  // Клиент (гость)
-                                _ => Color.White    // Пустая клетка
+                                1 => Color.Orange,
+                                2 => Color.Yellow,
+                                _ => Color.White
                             };
                         }
                     }
@@ -870,7 +854,6 @@ namespace Project3.Forms
                 {
                     _logger.LogInfo($"Game ended. Winner: {_gameService.Winner}");
 
-                    // Отправляем результат игры противнику
                     if (_gameService.Winner.HasValue)
                     {
                         _networkService.SendGameEnd(_gameService.Winner.Value);

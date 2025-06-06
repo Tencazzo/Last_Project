@@ -32,12 +32,19 @@ namespace Project3.Services
                     ["RepeatGame"] = "Повторная игра",
                     ["Rating"] = "Рейтинг",
                     ["UsernamePoints"] = "Имя пользователя - количество очков",
-                    ["Example"] = "Пример: Сергей - 1600",
                     ["Player1"] = "Игрок 1",
                     ["Player2"] = "Игрок 2",
                     ["YourTurn"] = "Ваш ход",
                     ["OpponentTurn"] = "Ход соперника",
-                    ["ShowPassword"] = "Показать пароль"
+                    ["GameFormTitle"] = "Игра",
+                    ["LoginFormTitle"] = "Авторизация",
+                    ["MainFormTitle"] = "Рейтинг и запуск игры",
+                    ["RegisterFormTitle"] = "Регистрация",
+                    ["ResultFormTitle"] = "Результат игры",
+                    ["WaitingForPlayer"] = "Ожидание второго игрока...",
+                    ["WaitingForGuest"] = "Ожидание гостя",
+                    ["Host"] = "Хост",
+                    ["Guest"] = "Гость"
                 },
                 ["en"] = new Dictionary<string, string>
                 {
@@ -58,12 +65,18 @@ namespace Project3.Services
                     ["RepeatGame"] = "Repeat game",
                     ["Rating"] = "Rating",
                     ["UsernamePoints"] = "Username - number of points",
-                    ["Example"] = "Example: Sergey - 1600",
                     ["Player1"] = "Player 1",
                     ["Player2"] = "Player 2",
                     ["YourTurn"] = "Your turn",
                     ["OpponentTurn"] = "Opponent's turn",
-                    ["ShowPassword"] = "Show password"
+                    ["GameFormTitle"] = "Game",
+                    ["LoginFormTitle"] = "Authorization",
+                    ["MainFormTitle"] = "Rating and game start",
+                    ["RegisterFormTitle"] = "Registration",
+                    ["ResultFormTitle"] = "Game result",
+                    ["WaitingForPlayer"] = "Waiting for player...",
+                    ["WaitingForGuest"] = "Waiting for guest",
+                    ["Guest"] = "Guest"
                 }
             };
         }
@@ -75,7 +88,7 @@ namespace Project3.Services
             {
                 return value;
             }
-            return key; // Возвращаем ключ, если перевод не найден
+            return key; 
         }
 
         public void SetLanguage(string language)

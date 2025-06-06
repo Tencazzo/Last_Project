@@ -39,6 +39,8 @@ namespace Project3.Forms
         {
             if (repeatGameButton != null)
                 repeatGameButton.Text = _localizationService.GetString("RepeatGame");
+            this.Text = _localizationService.GetString("ResultFormTitle");
+
             if (ratingButton != null)
                 ratingButton.Text = _localizationService.GetString("Rating");
         }
@@ -52,9 +54,8 @@ namespace Project3.Forms
                 if (playerWon == true)
                 {
                     resultLabel.Text = _localizationService.GetString("YouWon");
-                    // Добавляем очки за победу
-                    _userService.UpdateScore(100);
-                    _logger.LogInfo($"Player {_userService.CurrentUser?.Login} won and gained 100 points");
+                    _userService.UpdateScore(10);
+                    _logger.LogInfo($"Player {_userService.CurrentUser?.Login} won and gained 10 points");
                 }
                 else if (playerWon == false)
                 {
@@ -64,9 +65,8 @@ namespace Project3.Forms
                 else
                 {
                     resultLabel.Text = "Ничья!";
-                    // Добавляем очки за ничью
-                    _userService.UpdateScore(50);
-                    _logger.LogInfo($"Game ended in draw, player {_userService.CurrentUser?.Login} gained 50 points");
+                    _userService.UpdateScore(5);
+                    _logger.LogInfo($"Game ended in draw, player {_userService.CurrentUser?.Login} gained 5 points");
                 }
             }
         }
@@ -82,7 +82,6 @@ namespace Project3.Forms
 
         private void RatingButton_Click(object? sender, EventArgs e)
         {
-            // Find the existing main form
             var mainForm = Application.OpenForms.OfType<MainForm>().FirstOrDefault();
             if (mainForm != null)
             {

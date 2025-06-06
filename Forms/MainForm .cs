@@ -27,6 +27,12 @@ namespace Project3.Forms
             SetupEventHandlers();
             UpdateLocalization();
             LoadLeaderboard();
+            if (leaderboardListBox != null)
+            {
+                leaderboardListBox.DrawMode = DrawMode.OwnerDrawVariable;
+                leaderboardListBox.DrawItem += LeaderboardListBox_DrawItem;
+                leaderboardListBox.MeasureItem += LeaderboardListBox_MeasureItem;
+            }
         }
 
         private void InitializeLanguageComboBox()
@@ -61,6 +67,7 @@ namespace Project3.Forms
         {
             if (leaderboardTitleLabel != null)
                 leaderboardTitleLabel.Text = _localizationService.GetString("Leaderboard");
+            this.Text = _localizationService.GetString("MainFormTitle");
             if (leaderboardHeaderLabel != null)
                 leaderboardHeaderLabel.Text = _localizationService.GetString("UsernamePoints");
             if (newGameButton != null)
@@ -93,7 +100,7 @@ namespace Project3.Forms
 
             var gameForm = DIContainer.Resolve<GameForm>();
             gameForm.Show();
-            this.Hide(); // Скрываем главную форму, но не закрываем
+            this.Hide(); 
         }
 
         private void LogoutButton_Click(object? sender, EventArgs e)
@@ -101,7 +108,6 @@ namespace Project3.Forms
             _userService.Logout();
             _logger.LogInfo("User logged out");
 
-            // Find the existing login form or create a new one
             var loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
             if (loginForm == null)
             {
@@ -109,15 +115,41 @@ namespace Project3.Forms
             }
 
             loginForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
 
-            // Завершаем приложение при закрытии главной формы
             Application.Exit();
         }
+        private void LeaderboardListBox_DrawItem(object? sender, DrawItemEventArgs e)
+        {
+            if (leaderboardListBox == null || e.Index < 0) return;
+
+            e.DrawBackground();
+
+            StringFormat sf = new StringFormat
+            {
+                LineAlignment = StringAlignment.Center,
+                Alignment = StringAlignment.Center
+            };
+
+            Brush textBrush = new SolidBrush(Color.Black);
+
+            e.Graphics.DrawString(leaderboardListBox.Items[e.Index].ToString(),
+                                 e.Font,
+                                 textBrush,
+                                 e.Bounds,
+                                 sf);
+
+            e.DrawFocusRectangle();
+            textBrush.Dispose();
+        }
+
+        private void LeaderboardListBox_MeasureItem(object? sender, MeasureItemEventArgs e)
+        {
+            e.ItemHeight = 35;        }
     }
 }

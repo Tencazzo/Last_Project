@@ -23,7 +23,7 @@ namespace Project3.Services
         public event Action<string>? MessageReceived;
         public event Action? PlayerConnected;
         public event Action? PlayerDisconnected;
-        public event Action<int>? GameEnded; // Новое событие для окончания игры
+        public event Action<int>? GameEnded; 
 
         public bool IsConnected => _isConnected;
         public bool IsServer => _isServer;
@@ -107,13 +107,10 @@ namespace Project3.Services
 
                         _cancellationTokenSource = new CancellationTokenSource();
 
-                        // Запускаем получение сообщений
                         Task.Run(async () => await ReceiveMessagesAsync(_cancellationTokenSource.Token));
 
-                        // Ждем стабилизации соединения
                         Thread.Sleep(500);
 
-                        // Отправляем приветственное сообщение серверу
                         _logger.LogInfo("Client sending CLIENT_CONNECTED message");
                         SendMessage("CLIENT_CONNECTED");
 
@@ -282,7 +279,6 @@ namespace Project3.Services
                 }
                 else
                 {
-                    // Все остальные сообщения обрабатываем как контрольные
                     _logger.LogInfo($"Processing control message: '{message}'");
                     ProcessControlMessage(message);
                     MessageReceived?.Invoke(message);
@@ -304,7 +300,6 @@ namespace Project3.Services
                     {
                         _logger.LogInfo("Server received CLIENT_CONNECTED, sending GAME_READY");
 
-                        // Небольшая задержка для стабилизации
                         Thread.Sleep(100);
 
                         SendMessage("GAME_READY");

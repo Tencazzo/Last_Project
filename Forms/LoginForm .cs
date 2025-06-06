@@ -68,6 +68,7 @@ namespace Project3.Forms
         {
             if (titleLabel != null)
                 titleLabel.Text = _localizationService.GetString("Authorization");
+            this.Text = _localizationService.GetString("LoginFormTitle");
 
             if (loginTextBox?.ForeColor == Color.Gray)
                 loginTextBox.Text = _localizationService.GetString("Login");
@@ -79,8 +80,6 @@ namespace Project3.Forms
                 loginButton.Text = _localizationService.GetString("Enter");
             if (createAccountLink != null)
                 createAccountLink.Text = _localizationService.GetString("CreateAccount");
-            if (showPasswordLabel != null)
-                showPasswordLabel.Text = _localizationService.GetString("ShowPassword");
         }
 
         private void LoginTextBox_Enter(object? sender, EventArgs e)
@@ -152,7 +151,7 @@ namespace Project3.Forms
 
                 var mainForm = DIContainer.Resolve<MainForm>();
                 mainForm.Show();
-                this.Hide(); // Change from Close() to Hide()
+                this.Hide(); 
             }
             else
             {
@@ -165,7 +164,7 @@ namespace Project3.Forms
         {
             var registerForm = DIContainer.Resolve<RegisterForm>();
             registerForm.Show();
-            this.Hide(); // Change from Close() to Hide()
+            this.Hide();
         }
     }
 }
