@@ -50,7 +50,7 @@ namespace Project3.Forms
             // 
             newGameButton.BackColor = Color.White;
             newGameButton.Font = new Font("Microsoft Sans Serif", 16F);
-            newGameButton.Location = new Point(148, 512);
+            newGameButton.Location = new Point(183, 450);
             newGameButton.Margin = new Padding(4, 5, 4, 5);
             newGameButton.Name = "newGameButton";
             newGameButton.Size = new Size(300, 94);
@@ -62,7 +62,8 @@ namespace Project3.Forms
             // 
             logoutButton.BackColor = Color.White;
             logoutButton.Font = new Font("Microsoft Sans Serif", 12F);
-            logoutButton.Location = new Point(45, 960);
+            logoutButton.ForeColor = Color.Red;
+            logoutButton.Location = new Point(26, 853);
             logoutButton.Margin = new Padding(4, 5, 4, 5);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(275, 62);
@@ -77,17 +78,18 @@ namespace Project3.Forms
             leaderboardPanel.Controls.Add(leaderboardListBox);
             leaderboardPanel.Controls.Add(leaderboardHeaderLabel);
             leaderboardPanel.Controls.Add(leaderboardTitleLabel);
-            leaderboardPanel.Location = new Point(595, 117);
+            leaderboardPanel.Location = new Point(596, 31);
             leaderboardPanel.Margin = new Padding(4, 5, 4, 5);
             leaderboardPanel.Name = "leaderboardPanel";
-            leaderboardPanel.Size = new Size(650, 905);
+            leaderboardPanel.Size = new Size(639, 884);
             leaderboardPanel.TabIndex = 3;
             // 
             // leaderboardListBox
             // 
+            leaderboardListBox.DrawMode = DrawMode.OwnerDrawVariable;
             leaderboardListBox.Font = new Font("Microsoft Sans Serif", 12F);
             leaderboardListBox.FormattingEnabled = true;
-            leaderboardListBox.ItemHeight = 29;
+            leaderboardListBox.ItemHeight = 35;
             leaderboardListBox.Location = new Point(25, 188);
             leaderboardListBox.Margin = new Padding(4, 5, 4, 5);
             leaderboardListBox.Name = "leaderboardListBox";
@@ -122,8 +124,8 @@ namespace Project3.Forms
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(123, 104, 238);
-            ClientSize = new Size(1278, 1064);
+            BackColor = Color.RoyalBlue;
+            ClientSize = new Size(1278, 944);
             Controls.Add(leaderboardPanel);
             Controls.Add(logoutButton);
             Controls.Add(newGameButton);
@@ -133,7 +135,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Рейтинг и запуск игры - Третья форма";
+            Text = "Рейтинг и запуск игры";
             leaderboardPanel.ResumeLayout(false);
             leaderboardPanel.PerformLayout();
             ResumeLayout(false);

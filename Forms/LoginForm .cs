@@ -79,8 +79,6 @@ namespace Project3.Forms
                 loginButton.Text = _localizationService.GetString("Enter");
             if (createAccountLink != null)
                 createAccountLink.Text = _localizationService.GetString("CreateAccount");
-            if (showPasswordLabel != null)
-                showPasswordLabel.Text = _localizationService.GetString("ShowPassword");
         }
 
         private void LoginTextBox_Enter(object? sender, EventArgs e)

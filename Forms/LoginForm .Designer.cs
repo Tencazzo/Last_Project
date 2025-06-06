@@ -120,7 +120,7 @@ namespace Project3.Forms
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(123, 104, 238);
+            BackColor = Color.RoyalBlue;
             ClientSize = new Size(1330, 1064);
             Controls.Add(createAccountLink);
             Controls.Add(loginButton);
@@ -134,7 +134,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Авторизация - Первая форма";
+            Text = "Авторизация";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -27,6 +27,12 @@ namespace Project3.Forms
             SetupEventHandlers();
             UpdateLocalization();
             LoadLeaderboard();
+            if (leaderboardListBox != null)
+            {
+                leaderboardListBox.DrawMode = DrawMode.OwnerDrawVariable;
+                leaderboardListBox.DrawItem += LeaderboardListBox_DrawItem;
+                leaderboardListBox.MeasureItem += LeaderboardListBox_MeasureItem;
+            }
         }
 
         private void InitializeLanguageComboBox()
@@ -118,6 +124,37 @@ namespace Project3.Forms
 
             // Завершаем приложение при закрытии главной формы
             Application.Exit();
+        }
+        private void LeaderboardListBox_DrawItem(object? sender, DrawItemEventArgs e)
+        {
+            if (leaderboardListBox == null || e.Index < 0) return;
+
+            e.DrawBackground();
+
+            // Настройки для центрирования текста
+            StringFormat sf = new StringFormat
+            {
+                LineAlignment = StringAlignment.Center,
+                Alignment = StringAlignment.Center
+            };
+
+            // Определение цвета текста (чтобы выделялся на белом фоне)
+            Brush textBrush = new SolidBrush(Color.Black);
+
+            // Отрисовка текста по центру
+            e.Graphics.DrawString(leaderboardListBox.Items[e.Index].ToString(),
+                                 e.Font,
+                                 textBrush,
+                                 e.Bounds,
+                                 sf);
+
+            e.DrawFocusRectangle();
+            textBrush.Dispose();
+        }
+
+        private void LeaderboardListBox_MeasureItem(object? sender, MeasureItemEventArgs e)
+        {
+            e.ItemHeight = 35; // Высота каждой строки в списке
         }
     }
 }

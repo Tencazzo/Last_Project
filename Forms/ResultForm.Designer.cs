@@ -22,58 +22,65 @@ namespace Project3.Forms
 
         private void InitializeComponent()
         {
-            this.resultLabel = new Label();
-            this.repeatGameButton = new Button();
-            this.ratingButton = new Button();
-            this.SuspendLayout();
-
-            // Form
-            this.AutoScaleDimensions = new SizeF(8F, 16F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.FromArgb(123, 104, 238);
-            this.ClientSize = new Size(1022, 681);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "ResultForm";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Результат игры - Пятая форма";
-
+            resultLabel = new Label();
+            repeatGameButton = new Button();
+            ratingButton = new Button();
+            SuspendLayout();
+            // 
             // resultLabel
-            this.resultLabel.AutoSize = true;
-            this.resultLabel.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
-            this.resultLabel.ForeColor = Color.White;
-            this.resultLabel.Location = new Point(296, 200);
-            this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new Size(430, 91);
-            this.resultLabel.TabIndex = 0;
-            this.resultLabel.Text = "Вы выиграли!";
-            this.resultLabel.TextAlign = ContentAlignment.MiddleCenter;
-
+            // 
+            resultLabel.AutoSize = true;
+            resultLabel.Font = new Font("Microsoft Sans Serif", 48F, FontStyle.Bold);
+            resultLabel.ForeColor = Color.White;
+            resultLabel.Location = new Point(370, 312);
+            resultLabel.Margin = new Padding(4, 0, 4, 0);
+            resultLabel.Name = "resultLabel";
+            resultLabel.Size = new Size(669, 108);
+            resultLabel.TabIndex = 0;
+            resultLabel.Text = "Вы выиграли!";
+            resultLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // repeatGameButton
-            this.repeatGameButton.BackColor = Color.White;
-            this.repeatGameButton.Font = new Font("Microsoft Sans Serif", 16F);
-            this.repeatGameButton.Location = new Point(266, 370);
-            this.repeatGameButton.Name = "repeatGameButton";
-            this.repeatGameButton.Size = new Size(220, 60);
-            this.repeatGameButton.TabIndex = 1;
-            this.repeatGameButton.Text = "Повторная игра";
-            this.repeatGameButton.UseVisualStyleBackColor = false;
-
+            // 
+            repeatGameButton.BackColor = Color.White;
+            repeatGameButton.Font = new Font("Microsoft Sans Serif", 16F);
+            repeatGameButton.Location = new Point(332, 578);
+            repeatGameButton.Margin = new Padding(4, 5, 4, 5);
+            repeatGameButton.Name = "repeatGameButton";
+            repeatGameButton.Size = new Size(275, 94);
+            repeatGameButton.TabIndex = 1;
+            repeatGameButton.Text = "Повторная игра";
+            repeatGameButton.UseVisualStyleBackColor = false;
+            // 
             // ratingButton
-            this.ratingButton.BackColor = Color.White;
-            this.ratingButton.Font = new Font("Microsoft Sans Serif", 16F);
-            this.ratingButton.Location = new Point(536, 370);
-            this.ratingButton.Name = "ratingButton";
-            this.ratingButton.Size = new Size(220, 60);
-            this.ratingButton.TabIndex = 2;
-            this.ratingButton.Text = "Рейтинг";
-            this.ratingButton.UseVisualStyleBackColor = false;
-
-            this.Controls.Add(this.ratingButton);
-            this.Controls.Add(this.repeatGameButton);
-            this.Controls.Add(this.resultLabel);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            ratingButton.BackColor = Color.White;
+            ratingButton.Font = new Font("Microsoft Sans Serif", 16F);
+            ratingButton.Location = new Point(670, 578);
+            ratingButton.Margin = new Padding(4, 5, 4, 5);
+            ratingButton.Name = "ratingButton";
+            ratingButton.Size = new Size(275, 94);
+            ratingButton.TabIndex = 2;
+            ratingButton.Text = "Рейтинг";
+            ratingButton.UseVisualStyleBackColor = false;
+            // 
+            // ResultForm
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.RoyalBlue;
+            ClientSize = new Size(1278, 1064);
+            Controls.Add(ratingButton);
+            Controls.Add(repeatGameButton);
+            Controls.Add(resultLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            Name = "ResultForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Результат игры";
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

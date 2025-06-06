@@ -158,7 +158,8 @@ namespace Project3.Forms
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(123, 104, 238);
+            AutoValidate = AutoValidate.EnablePreventFocusChange;
+            BackColor = Color.RoyalBlue;
             ClientSize = new Size(1330, 1064);
             Controls.Add(authorizationLink);
             Controls.Add(registerButton);
@@ -175,7 +176,7 @@ namespace Project3.Forms
             MaximizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Регистрация - Вторая форма";
+            Text = "Регистрация";
             ResumeLayout(false);
             PerformLayout();
         }
