@@ -25,7 +25,7 @@ Visual Studio (или любая другая IDE для C#)
 
 
 1
-git clone  
+git clone  https://github.com/Tencazzo/Last_Project.git
 Откройте проект в Visual Studio , открыв файл решения .sln.
 Сборка проекта:
 Build → Build Solution
